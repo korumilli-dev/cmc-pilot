@@ -1,0 +1,36 @@
+- generic [active] [ref=f3e1]:
+  - banner [ref=f3e2]:
+    - generic [ref=f3e7]:
+      - heading "VEIN SEARCH" [level=1] [ref=f3e8]
+      - paragraph [ref=f3e9]: Find your stone by its character, not its catalogue name.
+    - button "Favourites 0" [ref=f3e10] [cursor=pointer]:
+      - text: Favourites
+      - generic [ref=f3e13]: "0"
+  - main [ref=f3e14]:
+    - region "Upload a reference photo" [ref=f3e15]:
+      - button "Upload a marble or stone photograph" [ref=f3e16] [cursor=pointer]:
+        - generic [ref=f3e17]:
+          - paragraph [ref=f3e22]: Drop a marble or stone photograph
+          - paragraph [ref=f3e23]: or browse your files · JPEG, PNG or WebP · max 10 MB
+      - generic [ref=f3e24]:
+        - paragraph [ref=f3e25]: "No photo handy? Try a reference:"
+        - generic "Sample reference photos" [ref=f3e26]:
+          - img "Try Banded Onyx Board" [ref=f3e27] [cursor=pointer]
+          - img "Try Turkish Alabaster Slab" [ref=f3e28] [cursor=pointer]
+          - img "Try Jura Gelb Limestone" [ref=f3e29] [cursor=pointer]
+          - img "Try Sunny Menia Limestone" [ref=f3e30] [cursor=pointer]
+          - img "Try Tan Brown Granite" [ref=f3e31] [cursor=pointer]
+          - img "Try Connemara Marble Slabs" [ref=f3e32] [cursor=pointer]
+          - img "Try Gilded Noon (synthetic sample)" [ref=f3e33] [cursor=pointer]
+    - generic [ref=f3e34]:
+      - heading "The catalogue awaits your photograph" [level=2] [ref=f3e36]
+      - paragraph [ref=f3e39]: Upload a reference photograph and VEIN SEARCH will find the six catalogue stones that most share its colour, veins, pattern and texture.
+  - contentinfo [ref=f3e40]:
+    - paragraph [ref=f3e41]:
+      - text: VEIN SEARCH · demonstration POC · catalogue contains
+      - strong [ref=f3e42]: publicly licensed (Wikimedia Commons)
+      - text: reference stones and
+      - strong [ref=f3e43]: clearly-labelled synthetic samples
+      - text: — no real CMC inventory is implied.
+      - link "API docs" [ref=f3e44] [cursor=pointer]:
+        - /url: /api/docs

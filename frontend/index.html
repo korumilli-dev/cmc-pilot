@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VEIN SEARCH — Find your stone by its character</title>
+  <meta name="description" content="AI-powered marble discovery: upload a photo of stone you love, and find the closest catalogue matches by visual character." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230e0f12'/%3E%3Cpath d='M8 6c4 6 2 12 6 20M15 6c5 5 3 11 8 20M23 6c2 5 1 10 3 16' stroke='%23d8cfc0' stroke-width='1.6' fill='none'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="/assets/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#1a1b1f"/><path d="M8 6c4 6 2 12 6 20M15 6c5 5 3 11 8 20M23 6c2 5 1 10 3 16" stroke="#d8cfc0" stroke-width="1.6" fill="none"/></svg>
+      <div>
+        <h1>VEIN&nbsp;SEARCH</h1>
+        <p class="tagline">Find your stone by its character, not its catalogue name.</p>
+      </div>
+    </div>
+    <button id="favBtn" class="ghost-btn" aria-haspopup="dialog">
+      <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M12 21s-7.5-4.7-9.7-9A5.6 5.6 0 0 1 12 6.6 5.6 5.6 0 0 1 21.7 12c-2.2 4.3-9.7 9-9.7 9z"/></svg>
+      Favourites <span id="favCount" class="pill">0</span>
+    </button>
+  </header>
+
+  <main>
+    <section class="upload-pane" aria-label="Upload a reference photo">
+      <div id="dropZone" class="dropzone" tabindex="0" role="button" aria-label="Upload a marble or stone photograph">
+        <input id="fileInput" type="file" accept="image/jpeg,image/png,image/webp" hidden />
+        <div id="dzIdle">
+          <svg viewBox="0 0 48 48" width="44" height="44" aria-hidden="true"><path d="M10 34c5-9 3-15 9-24m5 0c7 8 5 14 12 24" stroke="#8f8a80" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="18" cy="10" r="2.4" fill="#8f8a80"/><circle cx="35" cy="34" r="2.4" fill="#8f8a80"/></svg>
+          <p class="dz-title">Drop a marble or stone photograph</p>
+          <p class="dz-sub">or <span class="link">browse your files</span> · JPEG, PNG or WebP · max 10 MB</p>
+        </div>
+        <div id="dzPreview" class="dz-preview" hidden>
+          <img id="previewImg" alt="Uploaded reference photo preview" />
+          <div class="dz-preview-meta">
+            <p id="previewName"></p>
+            <p id="previewStatus" class="muted">Analysing visual character…</p>
+            <button id="clearBtn" class="ghost-btn small">Try another photo</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="samples">
+        <p class="samples-label">No photo handy? Try a reference:</p>
+        <div id="sampleStrip" class="sample-strip" aria-label="Sample reference photos"></div>
+      </div>
+    </section>
+
+    <section class="results-pane">
+      <div class="results-head">
+        <h2 id="resultsTitle">The catalogue awaits your photograph</h2>
+        <div id="resultsMeta" class="results-meta" hidden>
+          <span id="metaText"></span>
+          <button id="scoreInfoBtn" class="score-info" aria-label="What does the similarity score mean?">ⓘ scores</button>
+        </div>
+      </div>
+      <div id="scoreNote" class="score-note" hidden>
+        Similarity is <strong>cosine similarity</strong> between image embeddings — a visual-likeness ranking, <strong>not a probability</strong>. Higher = more visually alike; it carries no statistical confidence.
+      </div>
+      <div id="resultsGrid" class="results-grid">
+        <div class="empty-state">
+          <p>Upload a reference photograph and VEIN SEARCH will find the six catalogue stones that most share its colour, veins, pattern and texture.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Product details dialog -->
+  <dialog id="detailDialog" class="dialog">
+    <div id="detailBody" class="detail-body"></div>
+  </dialog>
+
+  <!-- Compare dialog -->
+  <dialog id="compareDialog" class="dialog wide">
+    <div id="compareBody" class="compare-body"></div>
+  </dialog>
+
+  <!-- Favourites drawer -->
+  <dialog id="favDialog" class="dialog">
+    <div id="favBody" class="fav-body"></div>
+  </dialog>
+
+  <footer class="footer">
+    <p>VEIN SEARCH · demonstration POC · catalogue contains <strong>publicly licensed (Wikimedia Commons)</strong> reference stones and <strong>clearly-labelled synthetic samples</strong> — no real CMC inventory is implied. <a href="/api/docs" target="_blank" rel="noopener">API docs</a></p>
+  </footer>
+
+  <div id="toast" class="toast" hidden></div>
+  <script src="/assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+[
+  {
+    "id": "SYN-01",
+    "name": "Aegean Veil",
+    "style": "veined",
+    "seed": 1000,
+    "file": "syn_syn01.png",
+    "note": "procedurally veined texture"
+  },
+  {
+    "id": "SYN-02",
+    "name": "Storm Cavern",
+    "style": "veined",
+    "seed": 8919,
+    "file": "syn_syn02.png",
+    "note": "procedurally veined texture"
+  },
+  {
+    "id": "SYN-03",
+    "name": "Ember Drift",
+    "style": "veined",
+    "seed": 16838,
+    "file": "syn_syn03.png",
+    "note": "procedurally veined texture"
+  },
+  {
+    "id": "SYN-04",
+    "name": "Verdant Terrace",
+    "style": "veined",
+    "seed": 24757,
+    "file": "syn_syn04.png",
+    "note": "procedurally veined texture"
+  },
+  {
+    "id": "SYN-05",
+    "name": "Gilded Noon",
+    "style": "veined",
+    "seed": 32676,
+    "file": "syn_syn05.png",
+    "note": "procedurally veined texture"
+  },
+  {
+    "id": "SYN-06",
+    "name": "Ivory Psalm",
+    "style": "veined",
+    "seed": 40595,
+    "file": "syn_syn06.png",
+    "note": "procedurally veined texture"
+  },
+  {
+    "id": "SYN-07",
+    "name": "Rosetta Clay",
+    "style": "veined",
+    "seed": 48514,
+    "file": "syn_syn07.png",
+    "note": "procedurally veined texture"
+  },
+  {
+    "id": "SYN-08",
+    "name": "Sapphire Lode",
+    "style": "veined",
+    "seed": 56433,
+    "file": "syn_syn08.png",
+    "note": "procedurally veined texture"
+  },
+  {
+    "id": "SYN-09",
+    "name": "Desert Band",
+    "style": "banded",
+    "seed": 64352,
+    "file": "syn_syn09.png",
+    "note": "procedurally banded texture"
+  },
+  {
+    "id": "SYN-10",
+    "name": "Onyx Cascade",
+    "style": "banded",
+    "seed": 72271,
+    "file": "syn_syn10.png",
+    "note": "procedurally banded texture"
+  },
+  {
+    "id": "SYN-11",
+    "name": "Umber Strata",
+    "style": "banded",
+    "seed": 80190,
+    "file": "syn_syn11.png",
+    "note": "procedurally banded texture"
+  },
+  {
+    "id": "SYN-12",
+    "name": "Jade Current",
+    "style": "banded",
+    "seed": 88109,
+    "file": "syn_syn12.png",
+    "note": "procedurally banded texture"
+  },
+  {
+    "id": "SYN-13",
+    "name": "Glacier Salt",
+    "style": "speckled",
+    "seed": 96028,
+    "file": "syn_syn13.png",
+    "note": "procedurally speckled/granular texture"
+  },
+  {
+    "id": "SYN-14",
+    "name": "Charcoal Fleck",
+    "style": "speckled",
+    "seed": 103947,
+    "file": "syn_syn14.png",
+    "note": "procedurally speckled/granular texture"
+  },
+  {
+    "id": "SYN-15",
+    "name": "Rose Quartzite",
+    "style": "speckled",
+    "seed": 111866,
+    "file": "syn_syn15.png",
+    "note": "procedurally speckled/granular texture"
+  },
+  {
+    "id": "SYN-16",
+    "name": "Moss Field",
+    "style": "speckled",
+    "seed": 119785,
+    "file": "syn_syn16.png",
+    "note": "procedurally speckled/granular texture"
+  },
+  {
+    "id": "SYN-17",
+    "name": "Honey Grain",
+    "style": "speckled",
+    "seed": 127704,
+    "file": "syn_syn17.png",
+    "note": "procedurally speckled/granular texture"
+  },
+  {
+    "id": "SYN-18",
+    "name": "Slate Mosaic",
+    "style": "speckled",
+    "seed": 135623,
+    "file": "syn_syn18.png",
+    "note": "procedurally speckled/granular texture"
+  }
+]

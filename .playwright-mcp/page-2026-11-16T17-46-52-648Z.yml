@@ -1,0 +1,44 @@
+- generic [active] [ref=f2e1]:
+  - banner [ref=f2e2]:
+    - generic [ref=f2e7]:
+      - heading "VEIN SEARCH" [level=1] [ref=f2e8]
+      - paragraph [ref=f2e9]: Find your stone by its character, not its catalogue name.
+    - button "Favourites 0" [ref=f2e10] [cursor=pointer]:
+      - text: Favourites
+      - generic [ref=f2e13]: "0"
+  - main [ref=f2e14]:
+    - region "Upload a reference photo" [ref=f2e15]:
+      - button "Upload a marble or stone photograph" [ref=f2e16] [cursor=pointer]:
+        - generic [ref=f2e17]:
+          - paragraph [ref=f2e22]: Drop a marble or stone photograph
+          - paragraph [ref=f2e23]: or browse your files · JPEG, PNG or WebP · max 10 MB
+        - generic [ref=f2e24]:
+          - img "Uploaded reference photo preview" [ref=f2e25]
+          - generic [ref=f2e26]:
+            - paragraph
+            - paragraph [ref=f2e27]: Analysing visual character…
+            - button "Try another photo" [ref=f2e28]
+      - generic [ref=f2e29]:
+        - paragraph [ref=f2e30]: "No photo handy? Try a reference:"
+        - generic "Sample reference photos" [ref=f2e31]:
+          - img "Try Banded Onyx Board" [ref=f2e32] [cursor=pointer]
+          - img "Try Turkish Alabaster Slab" [ref=f2e33] [cursor=pointer]
+          - img "Try Jura Gelb Limestone" [ref=f2e34] [cursor=pointer]
+          - img "Try Sunny Menia Limestone" [ref=f2e35] [cursor=pointer]
+          - img "Try Tan Brown Granite" [ref=f2e36] [cursor=pointer]
+          - img "Try Connemara Marble Slabs" [ref=f2e37] [cursor=pointer]
+          - img "Try Gilded Noon (synthetic sample)" [ref=f2e38] [cursor=pointer]
+    - generic [ref=f2e39]:
+      - generic [ref=f2e40]:
+        - heading "The catalogue awaits your photograph" [level=2] [ref=f2e41]
+        - button "What does the similarity score mean?" [ref=f2e43] [cursor=pointer]: ⓘ scores
+      - paragraph [ref=f2e46]: Upload a reference photograph and VEIN SEARCH will find the six catalogue stones that most share its colour, veins, pattern and texture.
+  - contentinfo [ref=f2e47]:
+    - paragraph [ref=f2e48]:
+      - text: VEIN SEARCH · demonstration POC · catalogue contains
+      - strong [ref=f2e49]: publicly licensed (Wikimedia Commons)
+      - text: reference stones and
+      - strong [ref=f2e50]: clearly-labelled synthetic samples
+      - text: — no real CMC inventory is implied.
+      - link "API docs" [ref=f2e51] [cursor=pointer]:
+        - /url: /api/docs
