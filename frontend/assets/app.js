@@ -353,8 +353,12 @@ document.addEventListener("click", (e) => {
 function wire() {
   const dz = $("#dropZone");
   const fi = $("#fileInput");
-  dz.addEventListener("click", () => fi.click());
-  dz.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") fi.click(); });
+  // The dropzone is a native <label for="fileInput">: a click anywhere inside it
+  // opens the file picker through the browser's own handling (no JS in the
+  // activation path — the most reliable across browsers/extensions).
+  dz.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); fi.click(); }
+  });
   dz.addEventListener("dragover", (e) => { e.preventDefault(); dz.classList.add("dragover"); });
   dz.addEventListener("dragleave", () => dz.classList.remove("dragover"));
   dz.addEventListener("drop", (e) => {
@@ -362,7 +366,10 @@ function wire() {
     handleFile(e.dataTransfer.files[0]);
   });
   fi.addEventListener("change", () => handleFile(fi.files[0]));
-  $("#clearBtn").addEventListener("click", (e) => { e.stopPropagation(); resetDropzone(); });
+  $("#clearBtn").addEventListener("click", (e) => {
+    // keep the label's default picker-activation from firing too
+    e.preventDefault(); e.stopPropagation(); resetDropzone();
+  });
   $("#scoreInfoBtn").addEventListener("click", () => { $("#scoreNote").hidden = false; });
 
   $("#favBtn").addEventListener("click", openFavourites);

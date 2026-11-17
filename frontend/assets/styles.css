@@ -73,6 +73,10 @@ main {
   cursor: pointer; transition: border-color .15s, background .15s;
   min-height: 210px; display: flex; flex-direction: column; justify-content: center;
 }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
 .dropzone:hover, .dropzone.dragover {
   border-color: var(--accent); background: rgba(207,197,180,0.04);
 }
