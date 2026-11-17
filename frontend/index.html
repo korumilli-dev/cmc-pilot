@@ -6,7 +6,7 @@
   <title>VEIN SEARCH — Find your stone by its character</title>
   <meta name="description" content="AI-powered marble discovery: upload a photo of stone you love, and find the closest catalogue matches by visual character." />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230e0f12'/%3E%3Cpath d='M8 6c4 6 2 12 6 20M15 6c5 5 3 11 8 20M23 6c2 5 1 10 3 16' stroke='%23d8cfc0' stroke-width='1.6' fill='none'/%3E%3C/svg%3E" />
-  <link rel="stylesheet" href="/assets/styles.css" />
+  <link rel="stylesheet" href="/assets/styles.css?v=2" />
 </head>
 <body>
   <header class="topbar">
@@ -26,11 +26,11 @@
   <main>
     <section class="upload-pane" aria-label="Upload a reference photo">
       <div id="dropZone" class="dropzone" tabindex="0" role="button" aria-label="Upload a marble or stone photograph">
-        <input id="fileInput" type="file" accept="image/jpeg,image/png,image/webp" hidden />
+        <input id="fileInput" type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif,.heic,.heif" hidden />
         <div id="dzIdle">
           <svg viewBox="0 0 48 48" width="44" height="44" aria-hidden="true"><path d="M10 34c5-9 3-15 9-24m5 0c7 8 5 14 12 24" stroke="#8f8a80" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="18" cy="10" r="2.4" fill="#8f8a80"/><circle cx="35" cy="34" r="2.4" fill="#8f8a80"/></svg>
           <p class="dz-title">Drop a marble or stone photograph</p>
-          <p class="dz-sub">or <span class="link">browse your files</span> · JPEG, PNG or WebP · max 10 MB</p>
+          <p class="dz-sub">or <span class="link">browse your files</span> · JPEG, PNG, WebP or phone HEIC · max 10 MB</p>
         </div>
         <div id="dzPreview" class="dz-preview" hidden>
           <img id="previewImg" alt="Uploaded reference photo preview" />
@@ -87,6 +87,6 @@
   </footer>
 
   <div id="toast" class="toast" hidden></div>
-  <script src="/assets/app.js"></script>
+  <script src="/assets/app.js?v=2"></script>
 </body>
 </html>

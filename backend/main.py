@@ -78,6 +78,12 @@ def health() -> dict:
     }
 
 
+@app.get("/health")
+def health_alias() -> dict:
+    """Alias for monitors that probe /health."""
+    return health()
+
+
 @app.get("/api/products")
 def list_products() -> dict:
     return {"products": [product_view(p) for p in catalogue.products]}
@@ -167,6 +173,15 @@ def catalogue_image(image_name: str) -> FileResponse:
     if not path.is_file() or CATALOGUE_IMAGES.resolve() not in path.parents:
         raise HTTPException(404, "Image not found")
     return FileResponse(path)
+
+
+@app.middleware("http")
+async def cache_headers(request, call_next):
+    """Force revalidation of the UI shell/assets so code changes reach browsers."""
+    response = await call_next(request)
+    if request.url.path == "/" or request.url.path.startswith("/assets"):
+        response.headers["Cache-Control"] = "no-cache"
+    return response
 
 
 app.mount("/", StaticFiles(directory=FRONTEND, html=True), name="frontend")

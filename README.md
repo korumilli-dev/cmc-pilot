@@ -89,8 +89,9 @@ statistical confidence attached, and the UI/API state this explicitly
 
 ## Features
 
-- Upload (drag-drop/browse), preview, JPEG/PNG/WebP validation, 10 MB cap,
-  magic-byte sniffing, decompression-bomb guard
+- Upload (drag-drop/browse), preview, validation by **magic bytes** (JPEG/PNG/
+  WebP **and phone HEIC/HEIF** via pillow-heif), 10 MB cap, decompression-bomb
+  guard
 - Top-6 visual matches with product image, name, category, colour family,
   finish, origin, synthetic badge, similarity bar + explanation
 - Product details with full image provenance/licence

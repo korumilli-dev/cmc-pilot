@@ -1,0 +1,36 @@
+- generic [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e7]:
+      - heading "VEIN SEARCH" [level=1] [ref=e8]
+      - paragraph [ref=e9]: Find your stone by its character, not its catalogue name.
+    - button "Favourites 0" [ref=e10] [cursor=pointer]:
+      - text: Favourites
+      - generic [ref=e13]: "0"
+  - main [ref=e14]:
+    - region "Upload a reference photo" [ref=e15]:
+      - button "Upload a marble or stone photograph" [active] [ref=e16] [cursor=pointer]:
+        - generic [ref=e17]:
+          - paragraph [ref=e22]: Drop a marble or stone photograph
+          - paragraph [ref=e23]: or browse your files · JPEG, PNG, WebP or phone HEIC · max 10 MB
+      - generic [ref=e24]:
+        - paragraph [ref=e25]: "No photo handy? Try a reference:"
+        - generic "Sample reference photos" [ref=e26]:
+          - img "Try Banded Onyx Board" [ref=e27] [cursor=pointer]
+          - img "Try Turkish Alabaster Slab" [ref=e28] [cursor=pointer]
+          - img "Try Jura Gelb Limestone" [ref=e29] [cursor=pointer]
+          - img "Try Sunny Menia Limestone" [ref=e30] [cursor=pointer]
+          - img "Try Tan Brown Granite" [ref=e31] [cursor=pointer]
+          - img "Try Connemara Marble Slabs" [ref=e32] [cursor=pointer]
+          - img "Try Gilded Noon (synthetic sample)" [ref=e33] [cursor=pointer]
+    - generic [ref=e34]:
+      - heading "The catalogue awaits your photograph" [level=2] [ref=e36]
+      - paragraph [ref=e39]: Upload a reference photograph and VEIN SEARCH will find the six catalogue stones that most share its colour, veins, pattern and texture.
+  - contentinfo [ref=e40]:
+    - paragraph [ref=e41]:
+      - text: VEIN SEARCH · demonstration POC · catalogue contains
+      - strong [ref=e42]: publicly licensed (Wikimedia Commons)
+      - text: reference stones and
+      - strong [ref=e43]: clearly-labelled synthetic samples
+      - text: — no real CMC inventory is implied.
+      - link "API docs" [ref=e44] [cursor=pointer]:
+        - /url: /api/docs

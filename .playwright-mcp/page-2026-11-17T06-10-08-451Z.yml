@@ -1,0 +1,36 @@
+- generic [active] [ref=f1e1]:
+  - banner [ref=f1e2]:
+    - generic [ref=f1e7]:
+      - heading "VEIN SEARCH" [level=1] [ref=f1e8]
+      - paragraph [ref=f1e9]: Find your stone by its character, not its catalogue name.
+    - button "Favourites 0" [ref=f1e10] [cursor=pointer]:
+      - text: Favourites
+      - generic [ref=f1e13]: "0"
+  - main [ref=f1e14]:
+    - region "Upload a reference photo" [ref=f1e15]:
+      - button "Upload a marble or stone photograph" [ref=f1e16] [cursor=pointer]:
+        - generic [ref=f1e17]:
+          - paragraph [ref=f1e22]: Drop a marble or stone photograph
+          - paragraph [ref=f1e23]: or browse your files · JPEG, PNG, WebP or phone HEIC · max 10 MB
+      - generic [ref=f1e24]:
+        - paragraph [ref=f1e25]: "No photo handy? Try a reference:"
+        - generic "Sample reference photos" [ref=f1e26]:
+          - img "Try Banded Onyx Board" [ref=f1e27] [cursor=pointer]
+          - img "Try Turkish Alabaster Slab" [ref=f1e28] [cursor=pointer]
+          - img "Try Jura Gelb Limestone" [ref=f1e29] [cursor=pointer]
+          - img "Try Sunny Menia Limestone" [ref=f1e30] [cursor=pointer]
+          - img "Try Tan Brown Granite" [ref=f1e31] [cursor=pointer]
+          - img "Try Connemara Marble Slabs" [ref=f1e32] [cursor=pointer]
+          - img "Try Gilded Noon (synthetic sample)" [ref=f1e33] [cursor=pointer]
+    - generic [ref=f1e34]:
+      - heading "The catalogue awaits your photograph" [level=2] [ref=f1e36]
+      - paragraph [ref=f1e39]: Upload a reference photograph and VEIN SEARCH will find the six catalogue stones that most share its colour, veins, pattern and texture.
+  - contentinfo [ref=f1e40]:
+    - paragraph [ref=f1e41]:
+      - text: VEIN SEARCH · demonstration POC · catalogue contains
+      - strong [ref=f1e42]: publicly licensed (Wikimedia Commons)
+      - text: reference stones and
+      - strong [ref=f1e43]: clearly-labelled synthetic samples
+      - text: — no real CMC inventory is implied.
+      - link "API docs" [ref=f1e44] [cursor=pointer]:
+        - /url: /api/docs

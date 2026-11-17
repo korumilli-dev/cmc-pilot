@@ -14,6 +14,15 @@ import pathlib
 import numpy as np
 from PIL import Image, ImageFile, UnidentifiedImageError
 
+# HEIC/HEIF (iPhone photos) support when pillow-heif is installed
+try:
+    from pillow_heif import register_heif_opener
+
+    register_heif_opener()
+    HEIF_SUPPORTED = True
+except ImportError:  # pragma: no cover - optional dependency
+    HEIF_SUPPORTED = False
+
 # Tolerate truncated uploads instead of crashing the worker
 ImageFile.LOAD_TRUNCATED_IMAGES = False
 Image.MAX_IMAGE_PIXELS = 40_000_000  # decompression-bomb guard (~40MP)

@@ -80,17 +80,17 @@ function resetDropzone() {
   $("#previewImg").src = "";
 }
 
-async function searchWithBytes(bytes, filename, displayName) {
+async function searchWithBytes(bytes, filename, displayName, mime = "image/jpeg") {
   if (state.searching) return;
   state.searching = true;
-  const objectUrl = URL.createObjectURL(new Blob([bytes], { type: "image/jpeg" }));
+  const objectUrl = URL.createObjectURL(new Blob([bytes], { type: mime }));
   setPreviewImage(objectUrl, displayName, '<span class="spinner"></span>Analysing visual character…');
   $("#resultsTitle").textContent = "Reading the stone's character…";
   const grid = $("#resultsGrid");
   grid.innerHTML = '<div class="empty-state"><p>Comparing colour, veins, pattern and texture across the catalogue…</p></div>';
 
   const form = new FormData();
-  form.append("file", new Blob([bytes], { type: "image/jpeg" }), filename);
+  form.append("file", new Blob([bytes], { type: mime }), filename);
   try {
     const data = await api("/api/search", { method: "POST", body: form });
     renderResults(data);
@@ -108,17 +108,33 @@ async function searchWithBytes(bytes, filename, displayName) {
 
 async function handleFile(file) {
   if (!file) return;
-  const okTypes = ["image/jpeg", "image/png", "image/webp"];
-  if (!okTypes.includes(file.type)) {
-    toast("Please upload a JPEG, PNG or WebP image.");
-    return;
-  }
   if (file.size > 10 * 1024 * 1024) {
     toast("File too large (max 10 MB).");
     return;
   }
+  // Trust the file's magic bytes, not the browser-reported MIME type
+  // (browsers report HEIC as image/heic, JPEG as image/jpg, or "" at times).
+  const head = new Uint8Array(await file.slice(0, 16).arrayBuffer());
+  const type = sniffImageType(head);
+  if (!type) {
+    toast("Unsupported file. Please use a photo (JPEG, PNG, WebP or HEIC).");
+    return;
+  }
   const buf = await file.arrayBuffer();
-  searchWithBytes(new Uint8Array(buf), file.name || "upload.jpg", file.name || "Uploaded photo");
+  const mime = { jpeg: "image/jpeg", png: "image/png", webp: "image/webp", heic: "image/heic" }[type];
+  searchWithBytes(new Uint8Array(buf), file.name || `upload.${type}`, file.name || "Uploaded photo", mime);
+}
+
+function sniffImageType(head) {
+  if (head.length >= 3 && head[0] === 0xff && head[1] === 0xd8 && head[2] === 0xff) return "jpeg";
+  if (head.length >= 8 && head[0] === 0x89 && head[1] === 0x50 && head[2] === 0x4e && head[3] === 0x47) return "png";
+  if (head.length >= 12 && head[0] === 0x52 && head[1] === 0x49 && head[2] === 0x46 && head[3] === 0x46
+      && head[8] === 0x57 && head[9] === 0x45 && head[10] === 0x42 && head[11] === 0x50) return "webp";
+  if (head.length >= 12 && head[4] === 0x66 && head[5] === 0x74 && head[6] === 0x79 && head[7] === 0x70) {
+    const brand = String.fromCharCode(head[8], head[9], head[10], head[11]);
+    if (/^(hei[cfmx]|hevc|hevx|mif1|msf1|heis)/.test(brand)) return "heic";
+  }
+  return null;
 }
 
 async function handleSample(p) {

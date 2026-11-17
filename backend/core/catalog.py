@@ -5,13 +5,22 @@ import json
 import pathlib
 from typing import Any
 
-ALLOWED_MIME = {"image/jpeg", "image/png", "image/webp"}
+ALLOWED_MIME = {
+    "image/jpeg",
+    "image/png",
+    "image/webp",
+    "image/heic",  # iPhone photos
+    "image/heif",
+}
 MAGIC_SIGNATURES = (
     (b"\xff\xd8\xff", "image/jpeg"),
     (b"\x89PNG\r\n\x1a\n", "image/png"),
     (b"RIFF", "image/webp"),  # RIFF....WEBP checked more precisely below
 )
 MAX_UPLOAD_BYTES = 10 * 1024 * 1024  # 10 MB
+
+# ISO-BMFF "ftyp" box: bytes 4-8 == "ftyp", brand at 8-12.
+_HEIF_BRANDS = (b"heic", b"heix", b"heim", b"hevc", b"hevx", b"mif1", b"msf1", b"heis")
 
 
 class UploadError(ValueError):
@@ -23,6 +32,11 @@ class UploadError(ValueError):
 
 
 def sniff_mime(data: bytes) -> str | None:
+    if len(data) >= 12 and data[4:8] == b"ftyp":
+        brand = data[8:12]
+        if brand in _HEIF_BRANDS:
+            return "image/heic"
+        return None  # other ISO media (mp4, mov …) — not a still image
     for sig, mime in MAGIC_SIGNATURES:
         if data.startswith(sig):
             if mime == "image/webp":

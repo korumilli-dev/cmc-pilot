@@ -117,3 +117,30 @@ def test_catalogue_images_served(client, catalogue_images_dir):
 
 def test_catalogue_image_traversal_blocked(client):
     assert client.get("/catalogue-images/..%2Ffavourites.json").status_code in (400, 404)
+
+
+def _make_heic(catalogue_images_dir, product_id="WM-06"):
+    """Encode a catalogue image to a real HEIC file (pillow-heif includes an encoder)."""
+    data, _ = _img_bytes(catalogue_images_dir, product_id)
+    import io
+
+    from PIL import Image
+    img = Image.open(io.BytesIO(data)).convert("RGB")
+    img.thumbnail((512, 512))
+    out = io.BytesIO()
+    img.save(out, format="HEIF")
+    return out.getvalue()
+
+
+def test_search_accepts_heic_phone_photo(client, catalogue_images_dir):
+    """iPhone-style HEIC uploads must work end-to-end."""
+    heic = _make_heic(catalogue_images_dir)
+    r = client.post(
+        "/api/search",
+        files={"file": ("phone_photo.heic", heic, "image/heic")},
+    )
+    assert r.status_code == 200
+    body = r.json()
+    assert len(body["results"]) == 6
+    # HEIC of a catalogue image should still match visually-similar stones
+    assert body["results"][0]["similarity"] > 0.5
