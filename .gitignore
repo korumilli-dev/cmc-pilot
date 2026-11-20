@@ -5,3 +5,11 @@ data/raw/contact/
 data/catalogue/embeddings.npy.tmp
 *.egg-info/
 .DS_Store
+
+# knowledge-graph artefacts (regenerate with graphify)
+graphify-out/
+
+# Raw Wikimedia Commons candidates: re-fetchable with scripts/fetch_catalogue.py.
+# The manifests stay tracked so the curation is fully reproducible.
+data/raw/wikimedia/*
+!data/raw/wikimedia/index.json
