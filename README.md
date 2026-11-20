@@ -37,6 +37,31 @@ If you skip step 2 you'll get a clear error telling you to run it — the
 catalogue index (54 products, CLIP embeddings) ships prebuilt in
 `data/catalogue/` when present.
 
+## Share a demo link (temporary)
+
+To give stakeholders a public URL without deploying anything:
+
+```bash
+./scripts/share_demo.sh
+```
+
+It starts the app if needed, downloads `cloudflared` once into `.tools/`, and
+prints a `https://<random>.trycloudflare.com` link. Details that matter for a
+live demo:
+
+- The link exists **only while the script runs** and changes every restart —
+  share it right before the session, not days ahead.
+- The machine running it must stay awake and online; laptop sleep breaks it.
+- It is **public and unauthenticated** — anyone with the link can upload photos.
+  Don't leave it open after the demo (Ctrl+C).
+- Cold latency through the tunnel is ~0.4 s per page, ~0.3 s per search; the
+  CLIP model stays warm in the running process.
+
+If you need a permanent URL instead, the app needs a host with ≥1 GB RAM
+(see the deployment note below) — Vercel Functions cap at 500 MB unpacked and
+`torch` alone is 1.2 GB, so the FastAPI app cannot run inside a Vercel
+function as written.
+
 ## Architecture overview
 
 ```
@@ -168,12 +193,34 @@ handling, favourites round-trip, path-traversal guard).
 | Compliance | Licence attribution only in UI | Full attribution page, DPA, image-usage policy review |
 | Tests | API-level only | Load tests, model-quality regression suite (recall@k on labelled pairs), CI |
 
+## Hosting notes (why not Vercel Functions)
+
+The app needs **≥1 GB RAM and a writable disk** because it runs CLIP in-process
+and serves catalogue images from `data/catalogue/`. Measured footprint:
+
+| Component | Unpacked |
+|---|---|
+| `torch` | 1.2 GB |
+| CLIP ViT-B/32 weights | ~600 MB |
+| `transformers` + `numpy` | ~165 MB |
+
+Vercel Python Functions cap the bundle at **500 MB unzipped**, so this stack
+cannot be packaged there as-is. Workable options, cheapest first:
+
+| Option | Notes |
+|---|---|
+| Temporary tunnel (`scripts/share_demo.sh`) | Zero infrastructure, link dies with the process |
+| Hugging Face Spaces (Docker, free CPU) | 16 GB RAM free tier; deploy from this repo |
+| Railway / Fly.io | ~1–2 GB RAM tier; both deploy straight from GitHub |
+| Render | Free tier is 512 MB (OOMs on CLIP); paid Starter 2 GB works |
+| Vercel + ONNX swap | Only if a `*.vercel.app` URL is mandatory — replace torch/CLIP with a quantised ONNX model, rebuild embeddings, revalidate scores |
+
 ## Project layout
 
 ```
 backend/            FastAPI app + core (embedder, store, catalogue)
 frontend/           static UI (no build step)
-scripts/            fetch_catalogue · generate_synthetic · contact_sheet · build_index
+scripts/            fetch_catalogue · generate_synthetic · contact_sheet · build_index · share_demo
 data/raw/           curation + synthetic manifests (candidate media re-fetchable)
 data/catalogue/     products.json · embeddings.npy · images/
 tests/              pytest suite

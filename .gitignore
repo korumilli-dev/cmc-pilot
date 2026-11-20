@@ -13,3 +13,6 @@ graphify-out/
 # The manifests stay tracked so the curation is fully reproducible.
 data/raw/wikimedia/*
 !data/raw/wikimedia/index.json
+
+# tunnel binary downloaded by scripts/share_demo.sh
+.tools/
