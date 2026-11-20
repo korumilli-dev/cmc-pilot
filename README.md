@@ -8,6 +8,16 @@ veins, patterns and texture — and returns the six most visually similar
 products from a catalogue, with genuine similarity scores, product details,
 comparison and favourites.
 
+## Screenshots
+
+| Search results | Product details |
+| --- | --- |
+| ![Search results](vein-search-results.png) | ![Product details](vein-search-details.png) |
+
+| Compare | Phone photo (HEIC) upload |
+| --- | --- |
+| ![Compare view](vein-search-compare.png) | ![HEIC upload result](vein-search-heic.png) |
+
 ## Quick start
 
 ```bash
@@ -79,6 +89,11 @@ The catalogue is deliberately **mixed** (`data/catalogue/products.json`):
 - Pipeline: `scripts/fetch_catalogue.py` (Wikimedia API + licence filter) →
   manual curation (`data/raw/curated.json`) → `scripts/build_index.py`
   (copy images, embed with CLIP, write products.json + embeddings.npy).
+- **Repo note:** the downloaded candidate JPEG/PNGs under `data/raw/wikimedia/`
+  are not committed (they are ~67 MB of uncurated leftovers). Re-fetch them
+  with `scripts/fetch_catalogue.py`; the manifests (`index.json`,
+  `curated.json`) *are* committed, so the curation stays reproducible. The app
+  itself runs entirely from `data/catalogue/`, which is committed in full.
 
 ## Similarity scores — read this before demoing
 
@@ -159,7 +174,7 @@ handling, favourites round-trip, path-traversal guard).
 backend/            FastAPI app + core (embedder, store, catalogue)
 frontend/           static UI (no build step)
 scripts/            fetch_catalogue · generate_synthetic · contact_sheet · build_index
-data/raw/           fetched candidates, curation manifest, synthetic manifest
+data/raw/           curation + synthetic manifests (candidate media re-fetchable)
 data/catalogue/     products.json · embeddings.npy · images/
 tests/              pytest suite
 ```
